@@ -28,10 +28,10 @@ then
 fi
 
 # Begin script in case all parameters are correct
-echo "--- Компиляция main.cpp ---"
-mpicxx $parameterC -o $parameterC.bin
-echo ""
-echo "--- Запуск main.cpp с аргументом n=$parameterSIZE ---"
-echo ""
-echo "--- Вывод программы ---"
+# echo "--- Компиляция main.cpp ---"
+# mpicxx $parameterC -o $parameterC.bin
+# echo ""
+# echo "--- Запуск main.cpp с аргументом n=$parameterSIZE ---"
+# echo ""
+# echo "--- Вывод программы ---"
 mpirun -n $parameterN $parameterC.bin $parameterSIZE

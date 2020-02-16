@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <cstdlib>
 
+#include "helper.h"
+
 using namespace std;
 
 void printMatrix(double **matrix, int n)
@@ -36,6 +38,7 @@ int main(int argc, char *argv[])
     MPI_Init(&argc, &argv);
     MPI_Status stat;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     n = atoi(argv[1]); // Аргумент запуска программы
@@ -43,7 +46,7 @@ int main(int argc, char *argv[])
     double **A = new double *[n];
 
     for (int i = 0; i < n; i++)
-        A[i] = A[i];
+        A[i] = new double[n];
 
     double *b = new double[n];
 
@@ -58,8 +61,8 @@ int main(int argc, char *argv[])
     }
 
     // Вывод начальных данных
-    printMatrix(A, n);
-    printArray(b, n);
+    // printMatrix(A, n);
+    // printArray(b, n);
 
     double time1 = MPI_Wtime();
 
@@ -77,7 +80,7 @@ int main(int argc, char *argv[])
     double time = time2 - time1;
 
     // Вывод результата
-    printArray(c, n);
+    // printArray(c, n);
 
     cout << endl
          << "Time: " << time << endl;
